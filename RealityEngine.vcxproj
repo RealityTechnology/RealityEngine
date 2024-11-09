@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Source\Runtime\Application.cpp" />
     <ClCompile Include="Engine\Source\Runtime\CoreLog.cpp" />
     <ClCompile Include="Engine\Source\Runtime\Launch.cpp" />
     <ClCompile Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx11.cpp" />
@@ -146,14 +147,19 @@
     <ClCompile Include="Engine\ThirdParty\imgui\imgui_draw.cpp" />
     <ClCompile Include="Engine\ThirdParty\imgui\imgui_tables.cpp" />
     <ClCompile Include="Engine\ThirdParty\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Engine\Source\Runtime\Renderer.cpp" />
+    <ClCompile Include="Engine\Source\Runtime\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Source\Runtime\Application.h" />
     <ClInclude Include="Engine\Source\Runtime\CoreLog.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx12.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_win32.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\imgui.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\imgui_internal.h" />
+    <ClInclude Include="Engine\Source\Runtime\Renderer.h" />
+    <ClInclude Include="Engine\Source\Runtime\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
