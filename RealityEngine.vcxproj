@@ -114,7 +114,7 @@
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);dxgi.lib;d3d11.lib;d3d12.lib;dxgi.lib;</AdditionalDependencies>
     </Link>
@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Source\Runtime\CoreLog.cpp" />
     <ClCompile Include="Engine\Source\Runtime\Launch.cpp" />
     <ClCompile Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx11.cpp" />
     <ClCompile Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx12.cpp" />
@@ -147,6 +148,7 @@
     <ClCompile Include="Engine\ThirdParty\imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Source\Runtime\CoreLog.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx12.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_win32.h" />
