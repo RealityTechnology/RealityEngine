@@ -69,13 +69,13 @@ public:
     }
 
     // Dot product
-    double dot(const Vector3D& other) const
+    double dotProduct(const Vector3D& other) const
     {
         return x * other.x + y * other.y + z * other.z;
     }
 
     // Cross product
-    Vector3D cross(const Vector3D& other) const
+    Vector3D crossProduct(const Vector3D& other) const
     {
         return Vector3D(
             y * other.z - z * other.y,
