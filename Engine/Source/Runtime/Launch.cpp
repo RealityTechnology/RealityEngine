@@ -512,9 +512,11 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         }
 
         {
-            // Show player position
+            // Display the updated player position
             ImGui::Begin("Player Information");
             ImGui::Text("Player Position: (%.6f, %.6f, %.6f)", playerPosition.x, playerPosition.y, playerPosition.z);
+            // Optionally display other information, like velocity
+            ImGui::Text("Player Velocity: (%.6f, %.6f, %.6f)", playerVelocity.x, playerVelocity.y, playerVelocity.z);
             ImGui::End();
         }
 
