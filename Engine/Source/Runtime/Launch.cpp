@@ -320,6 +320,7 @@
 #endif
 
 #include "imgui_internal.h"
+#include "Core/Math/Vector3D.h"
 
 struct FrameContext
 {
@@ -378,6 +379,11 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     ::ShowWindow(hwnd, SW_SHOWDEFAULT);
     ::UpdateWindow(hwnd);
 
+    // Initialize player position with 64-bit precision
+    Vector3D playerPosition(0.0, 0.0, 0.0);
+    Vector3D playerVelocity(1.0, 0.0, 0.0); // Move along x-axis for demonstration
+    double playerSpeed = 0.1; // Adjust speed as necessary
+    
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -421,6 +427,27 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     bool done = false;
     while (!done)
     {
+        {
+            // Handle Input
+            playerVelocity = Vector3D(0.0, 0.0, 0.0);
+
+            if (GetAsyncKeyState('W') & 0x8000)
+                playerVelocity.z += playerSpeed;
+            if (GetAsyncKeyState('S') & 0x8000)
+                playerVelocity.z -= playerSpeed;
+            if (GetAsyncKeyState('A') & 0x8000)
+                playerVelocity.x -= playerSpeed;
+            if (GetAsyncKeyState('D') & 0x8000)
+                playerVelocity.x += playerSpeed;
+            if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+                playerVelocity.y += playerSpeed;
+            if (GetAsyncKeyState(VK_CONTROL) & 0x8000)
+                playerVelocity.y -= playerSpeed;
+
+            // Update player position
+            playerPosition += playerVelocity;
+        }
+        
         // Poll and handle messages (inputs, window resize, etc.)
         // See the WndProc() function below for our to dispatch events to the Win32 backend.
         MSG msg;
@@ -481,6 +508,13 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
             ImGui::Text("Hello from another window!");
             if (ImGui::Button("Close Me"))
                 show_another_window = false;
+            ImGui::End();
+        }
+
+        {
+            // Show player position
+            ImGui::Begin("Player Information");
+            ImGui::Text("Player Position: (%.6f, %.6f, %.6f)", playerPosition.x, playerPosition.y, playerPosition.z);
             ImGui::End();
         }
 
