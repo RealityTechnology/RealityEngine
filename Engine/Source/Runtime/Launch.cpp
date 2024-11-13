@@ -320,6 +320,7 @@
 #endif
 
 #include "imgui_internal.h"
+#include "Core/Math/Matrix4x4.h"
 #include "Core/Math/Vector3D.h"
 
 struct FrameContext
@@ -384,7 +385,36 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         Vector3D playerVelocity(1.0, 0.0, 0.0); // Move along x-axis for demonstration
         double playerSpeed = 0.1; // Adjust speed as necessary
     
+    Matrix4x4 matrix;
+    Matrix4x4 scaleMatrix;
+    Matrix4x4 translationMatrix;
+    Matrix4x4 rotationMatrix;
 
+    // Update matrices (this is an example, adjust as needed)
+    double scaleValues[4][4] = { 
+        { 1.2, 0.0, 0.0, 0.0 },
+        { 0.0, 1.2, 0.0, 0.0 },
+        { 0.0, 0.0, 1.2, 0.0 },
+        { 0.0, 0.0, 0.0, 1.0 } 
+    };
+    scaleMatrix = Matrix4x4(scaleValues);
+
+    double translationValues[4][4] = { 
+        { 1.0, 0.0, 0.0, 0.0 },
+        { 0.0, 1.0, 0.0, 0.0 },
+        { 0.0, 0.0, 1.0, 0.0 },
+        { 0.5, 0.5, 0.5, 1.0 } 
+    };
+    translationMatrix = Matrix4x4(translationValues);
+
+    double rotationValues[4][4] = { 
+        { cos(0.5), -sin(0.5), 0.0, 0.0 },
+        { sin(0.5), cos(0.5), 0.0, 0.0 },
+        { 0.0,      0.0,      1.0, 0.0 },
+        { 0.0,      0.0,      0.0, 1.0 } 
+    };
+    rotationMatrix = Matrix4x4(rotationValues);
+    
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -514,12 +544,17 @@ int  WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
         //Render Coordinate Window
         {
-            // Display the updated player position
-            ImGui::Begin("Player Information");
-            ImGui::Text("Player Position: (%.6f, %.6f, %.6f)", playerPosition.x, playerPosition.y, playerPosition.z);
-            // Optionally display other information, like velocity
-            ImGui::Text("Player Velocity: (%.6f, %.6f, %.6f)", playerVelocity.x, playerVelocity.y, playerVelocity.z);
-            ImGui::End();
+            // Update player position using the transformation matrix
+            matrix = scaleMatrix * rotationMatrix * translationMatrix;
+            Vector3D transformedPosition = matrix * playerPosition;
+
+            // Render Coordinate Window
+            {
+                ImGui::Begin("Player Information");
+                ImGui::Text("Player Position: (%.6f, %.6f, %.6f)", transformedPosition.x, transformedPosition.y, transformedPosition.z);
+                ImGui::Text("Player Velocity: (%.6f, %.6f, %.6f)", playerVelocity.x, playerVelocity.y, playerVelocity.z);
+                ImGui::End();
+            }
         }
 
         // Rendering

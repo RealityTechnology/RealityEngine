@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="Engine\Source\Runtime\Application.cpp" />
     <ClCompile Include="Engine\Source\Runtime\CoreLog.cpp" />
+    <ClCompile Include="Engine\Source\Runtime\Core\Math\Matrix4x4.cpp" />
     <ClCompile Include="Engine\Source\Runtime\Core\Math\Vector3D.cpp" />
     <ClCompile Include="Engine\Source\Runtime\Launch.cpp" />
     <ClCompile Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx11.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Source\Runtime\Application.h" />
     <ClInclude Include="Engine\Source\Runtime\CoreLog.h" />
+    <ClInclude Include="Engine\Source\Runtime\Core\Math\Matrix4x4.h" />
     <ClInclude Include="Engine\Source\Runtime\Core\Math\Vector3D.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx11.h" />
     <ClInclude Include="Engine\ThirdParty\imgui\backends\imgui_impl_dx12.h" />
